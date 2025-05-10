@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="GENERAL_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="JRebel" name="JRebel">
+      <configuration>
+        <option name="ideModuleStorage">
+          <map>
+            <entry key="com.zeroturnaround.jrebel.FormatVersion" value="7.0.0" />
+            <entry key="jrebelEnabled" value="true" />
+            <entry key="lastExternalPluginCheckTime" value="1746410012673" />
+            <entry key="rebelXmlGenerationInvariantToken" value="PGFwcGxpY2F0aW9uIGdlbmVyYXRlZC1ieT0iaW50ZWxsaWoiPjxpZD5zcHJpbmctYm9vdC1tb2R1bGU8L2lkPjxjbGFzc3BhdGg+PGRpciBuYW1lPSJEOi9wcm9qZWN0L0lERUEvc3ByaW5nLWJvb3QtbW9kdWxlL291dC9wcm9kdWN0aW9uL3NwcmluZy1ib290LW1vZHVsZSI+PC9kaXI+PC9jbGFzc3BhdGg+PC9hcHBsaWNhdGlvbj4=" />
+          </map>
+        </option>
+        <option name="version" value="21" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

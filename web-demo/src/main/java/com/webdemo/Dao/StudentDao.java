@@ -1,0 +1,12 @@
+package com.webdemo.Dao;
+
+import java.util.List;
+
+/**
+ * @author MoZi
+ * @createTime 2025/5/6 10:18
+ */
+public interface StudentDao {
+
+  List<String> getStudentList();
+}
