@@ -5,6 +5,7 @@ import jakarta.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -57,5 +58,20 @@ public class StudentMapperTests {
 
   }
 
+
+  @Test
+  @DisplayName("根据id查询Student")
+  public void selectStudentById() {
+    Student student = studentMapper.selectStudentById(1);
+    Assertions.assertNotNull(student);
+    System.out.println(student);
+  }
+
+  @Test
+  public void deleteStudentById() {
+    Integer row = studentMapper.deleteStudentById(1);
+    Assertions.assertNotNull(row);
+    System.out.println(row);
+  }
 
 }

@@ -18,4 +18,10 @@
     </set>
     WHERE id = #{id}
   </update>
+  <delete id="deleteStudentById">
+    delete from student where id = #{id};
+  </delete>
+  <select id="selectStudentById" resultType="com.springbootmybatis.pojo.Student">
+    select * from student where id = #{id};
+  </select>
 </mapper>

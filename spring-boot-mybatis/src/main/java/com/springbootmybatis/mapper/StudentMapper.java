@@ -17,10 +17,14 @@ public interface StudentMapper {
   @Insert("insert into student value (#{id},#{name},#{no},#{gender},#{phone},#{idCard},#{degree},#{graduationDate},#{createTime},#{updateTime})")
   Integer insertStudent(Student student);
 
-//  @Update("update student set no = #{no} , phone = #{phone} , id_card = #{idCard} where id = #{id}")
+  //  @Update("update student set no = #{no} , phone = #{phone} , id_card = #{idCard} where id = #{id}")
   Integer updateStudent(Student student);
 
 
+
+  Student selectStudentById(Integer id);
+
+  Integer deleteStudentById(Integer id);
 
 
 }
