@@ -16,7 +16,6 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="C:/Program Files/apache/maven-3.9.9/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
-          <entry name="C:/Program Files/apache/maven-3.9.9/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="spring-boot-tlias" />
         <module name="spring-boot-mybatis" />

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/spring-boot-hello/spring-boot-hello.iml" filepath="$PROJECT_DIR$/spring-boot-hello/spring-boot-hello.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-module.iml" filepath="$PROJECT_DIR$/spring-boot-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-tlias/spring-boot-tlias.iml" filepath="$PROJECT_DIR$/spring-boot-tlias/spring-boot-tlias.iml" />
     </modules>
   </component>
 </project>

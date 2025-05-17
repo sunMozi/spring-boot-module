@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: spring-boot-tlias
+    image_dir: E:/webserver/web_app/tlias/image/
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tlias
+    username: root
+    password: 123456
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.mozisun.springboottlias.model.entiry
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+# application.yml
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+# 阿里云oss
+aliyun:
+  oss:
+    endpoint: https://oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: LTAI5tJ6bcBF5BsQ4L574fw3
+    accessKeySecret: 9ZnH65dxss3w0reDABsfRqKo8TfPEO
+    bucketName: chengzi03
