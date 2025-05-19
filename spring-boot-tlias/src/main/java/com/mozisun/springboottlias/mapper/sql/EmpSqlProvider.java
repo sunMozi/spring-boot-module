@@ -11,7 +11,7 @@ import org.apache.ibatis.jdbc.SQL;
  * @date 2025/5/14 9:55
  * @description
  */
-public class EmpMapperSqlProvider {
+public class EmpSqlProvider {
 
 
   public String insertEmp(final Map<String, Object> params) {

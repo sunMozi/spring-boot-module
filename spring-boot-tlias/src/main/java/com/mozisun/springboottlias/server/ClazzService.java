@@ -26,4 +26,6 @@ public interface ClazzService {
   Clazz getById(Integer id);
 
   void putClazz(Clazz clazz);
+
+  List<Clazz> list();
 }

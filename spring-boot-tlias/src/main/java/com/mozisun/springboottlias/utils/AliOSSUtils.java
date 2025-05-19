@@ -1,6 +1,5 @@
 package com.mozisun.springboottlias.utils;
 
-
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.mozisun.springboottlias.properties.AliOSSProperties;
@@ -12,54 +11,56 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * @author moZiA
- * @date 2025/5/16 19:52
- * @description
- */
-
-/**
  * 阿里云 OSS 工具类
  */
-
 @Component
 public class AliOSSUtils {
+
   @Resource
   private AliOSSProperties aliOSSProperties;
 
   /**
-   * 以下是一个实现上传文件到OSS的方法
+   * 上传文件（使用配置默认参数）
    */
-
   public String upload(MultipartFile file) throws IOException {
+    String originalFilename = file.getOriginalFilename();
+    if (originalFilename == null) {
+      throw new IllegalArgumentException("文件名不能为空");
+    }
 
-    //获取阿里云OSS参数
+    // 生成唯一文件名
+    String fileName = generateUniqueFileName(originalFilename);
+    // 使用默认配置的存储桶
+    return upload(aliOSSProperties.getBucketName(), fileName, file);
+  }
+
+  public String upload(String bucketName, String fileName, MultipartFile file) throws IOException {
     String endpoint = aliOSSProperties.getEndpoint();
     String accessKeyId = aliOSSProperties.getAccessKeyId();
     String accessKeySecret = aliOSSProperties.getAccessKeySecret();
-    String bucketName = aliOSSProperties.getBucketName();
 
+    try (InputStream inputStream = file.getInputStream()) {
+      OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+      ossClient.putObject(bucketName, fileName, inputStream);
 
-    // 获取上传的文件的输入流
-    InputStream inputStream = file.getInputStream();
+      String url = buildObjectUrl(endpoint, bucketName, fileName);
+      ossClient.shutdown();
 
-
-    // 避免文件覆盖，需要使用UUID将文件重命名
-    String originalFilename = file.getOriginalFilename();
-    String fileName = UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf("."));
-
-    //上传文件到 OSS
-    OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
-    ossClient.putObject(bucketName, fileName, inputStream);
-
-    //文件访问路径
-    String url = endpoint.split("//")[0] + "//" + bucketName + "." + endpoint.split("//")[1] + "/" + fileName;
-
-    // 关闭ossClient
-    ossClient.shutdown();
-
-    // 把上传到oss的路径返回
-    return url;
-
+      return url;
+    }
   }
 
+
+  private String generateUniqueFileName(String originalFilename) {
+    String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
+    return UUID.randomUUID() + fileExtension;
+  }
+
+
+  private String buildObjectUrl(String endpoint, String bucketName, String objectName) {
+    String[] endpointParts = endpoint.split("//");
+    String protocol = endpointParts[0];
+    String domain = endpointParts[1];
+    return String.format("%s//%s.%s/%s", protocol, bucketName, domain, objectName);
+  }
 }

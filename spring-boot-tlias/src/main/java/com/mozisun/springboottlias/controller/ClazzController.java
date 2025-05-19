@@ -8,7 +8,7 @@ import com.mozisun.springboottlias.model.result.PageResult;
 import com.mozisun.springboottlias.model.result.Result;
 import com.mozisun.springboottlias.server.ClazzService;
 import jakarta.annotation.Resource;
-import java.util.Map;
+import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,6 +29,12 @@ public class ClazzController {
 
   @Resource
   private ClazzService clazzService;
+
+
+  @GetMapping("list")
+  public Result<List<Clazz>> list() {
+    return Result.success(clazzService.list());
+  }
 
 
   @PutMapping
@@ -57,7 +62,7 @@ public class ClazzController {
   }
 
   @GetMapping
-  public Result<PageResult<ClazzListDo>> getClazzList(ClazzPageQuery  clazzPageQuery) {
+  public Result<PageResult<ClazzListDo>> getClazzList(ClazzPageQuery clazzPageQuery) {
     PageResult<ClazzListDo> clazzList = clazzService.getClazzList(clazzPageQuery);
     return Result.success(clazzList);
   }

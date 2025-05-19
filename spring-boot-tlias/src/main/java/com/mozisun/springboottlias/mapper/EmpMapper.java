@@ -1,7 +1,7 @@
 package com.mozisun.springboottlias.mapper;
 
 import com.github.pagehelper.Page;
-import com.mozisun.springboottlias.mapper.sql.EmpMapperSqlProvider;
+import com.mozisun.springboottlias.mapper.sql.EmpSqlProvider;
 import com.mozisun.springboottlias.model.Dos.EmpListDo;
 import com.mozisun.springboottlias.model.Dto.EmpPageQuery;
 import com.mozisun.springboottlias.model.entiry.Emp;
@@ -11,7 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 
 /**
@@ -21,14 +20,14 @@ import org.apache.ibatis.annotations.SelectProvider;
 @Mapper
 public interface EmpMapper {
 
-  @SelectProvider(type = EmpMapperSqlProvider.class, method = "selectEmpWithDept")
+  @SelectProvider(type = EmpSqlProvider.class, method = "selectEmpWithDept")
   Page<EmpListDo> selectEmpWithDept(@Param("empPageQuery") EmpPageQuery empPageQuery);
 
-  @SelectProvider(type = EmpMapperSqlProvider.class, method = "selectEmpList")
+  @SelectProvider(type = EmpSqlProvider.class, method = "selectEmpList")
   List<Emp> selectEmpList();
 
 
-  @InsertProvider(type = EmpMapperSqlProvider.class, method = "insertEmp")
+  @InsertProvider(type = EmpSqlProvider.class, method = "insertEmp")
   @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
   void insertEmp(@Param("emp") Emp emp);
 

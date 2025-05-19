@@ -1,4 +1,4 @@
-package com.mozisun.springboottlias.mapper.sql;
+package com.mozisun.springboottlias.mapper;
 
 
 import com.mozisun.springboottlias.model.entiry.EmpLog;

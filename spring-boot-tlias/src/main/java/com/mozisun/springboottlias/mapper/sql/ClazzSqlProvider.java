@@ -11,7 +11,7 @@ import org.apache.ibatis.jdbc.SQL;
  * @date 2025/5/11 19:48
  * @description
  */
-public class ClazzMapperSqlProvider {
+public class ClazzSqlProvider {
 
   public String selectClazzListByClazzName(String name) {
     return new SQL() {{

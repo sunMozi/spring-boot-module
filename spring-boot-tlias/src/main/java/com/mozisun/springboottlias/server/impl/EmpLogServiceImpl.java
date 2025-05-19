@@ -1,7 +1,7 @@
 package com.mozisun.springboottlias.server.impl;
 
 
-import com.mozisun.springboottlias.mapper.sql.EmpLogMapper;
+import com.mozisun.springboottlias.mapper.EmpLogMapper;
 import com.mozisun.springboottlias.model.entiry.EmpLog;
 import com.mozisun.springboottlias.server.EmpLogService;
 import jakarta.annotation.Resource;

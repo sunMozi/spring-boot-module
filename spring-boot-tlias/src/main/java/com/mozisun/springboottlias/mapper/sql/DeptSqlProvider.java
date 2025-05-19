@@ -8,7 +8,7 @@ import org.apache.ibatis.jdbc.SQL;
  * @date 2025/5/11 11:24
  * @description
  */
-public class DeptMapperSqlProvider {
+public class DeptSqlProvider {
 
   public String updateDept() {
 
