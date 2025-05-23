@@ -1,7 +1,9 @@
 package com.mozisun.springboottlias.server;
 
 
+import com.mozisun.springboottlias.model.Dto.PageQuery;
 import com.mozisun.springboottlias.model.entiry.EmpLog;
+import com.mozisun.springboottlias.model.result.PageResult;
 
 /**
  * @author moZiA
@@ -11,4 +13,6 @@ import com.mozisun.springboottlias.model.entiry.EmpLog;
 public interface EmpLogService {
   //记录新增员工日志
   void insertLog(EmpLog empLog);
+
+  PageResult<EmpLog> page(PageQuery query);
 }

@@ -14,6 +14,11 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
 
+logging:
+  level:
+    org.springframework.boot.context.properties: info
+    org.springframework.core.env: info
+
 # application.yml
 pagehelper:
   helper-dialect: mysql
@@ -25,6 +30,18 @@ pagehelper:
 aliyun:
   oss:
     endpoint: https://oss-cn-hangzhou.aliyuncs.com
-    accessKeyId: ${ALIBABA_ACCESS_KEY_ID}
+    accessKeyId: ${ALIBABA_ACCESS_KEY_ID}      # 冒号后有空格！
     accessKeySecret: ${ALIBABA_ACCESS_KEY_SECRET}
     bucketName: chengzi03
+
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+
+knife4j:
+  enable: true

@@ -19,6 +19,7 @@ public class EmpExprVO {
   private Integer id;
   private String username;
   private String password;
+  private String phone;
   private String name;
   private Integer gender;
   private String image;

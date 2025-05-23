@@ -120,6 +120,9 @@ public class ClazzSqlProvider {
 
 
   private void buildWhereClause(SQL sql, ClazzPageQuery query) {
+    if (query == null) {
+      return;
+    }
     if (query.getName() != null && !query.getName().isEmpty()) {
       sql.WHERE("c.name LIKE CONCAT('%', #{clazzPageQuery.name}, '%')");
     }

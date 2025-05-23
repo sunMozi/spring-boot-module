@@ -23,6 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddEmpDto {
+  private Integer id;
   private String username; //用户名
   private String name; //姓名
   private Integer gender; //性别, 1:男, 2:女

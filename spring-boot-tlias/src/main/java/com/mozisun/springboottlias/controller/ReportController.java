@@ -31,4 +31,17 @@ public class ReportController {
   public Result<?> empJobData() {
     return reportServer.empJobData();
   }
+
+
+  @GetMapping("studentDegreeData")
+  public Result<?> studentDegreeData() {
+    return reportServer.studentDegreeData();
+  }
+
+  @GetMapping("studentCountData")
+  public Result<?> studentCountData() {
+    return reportServer.studentCountData();
+  }
+
+
 }

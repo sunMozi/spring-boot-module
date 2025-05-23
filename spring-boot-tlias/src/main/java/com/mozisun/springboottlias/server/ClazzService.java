@@ -27,5 +27,5 @@ public interface ClazzService {
 
   void putClazz(Clazz clazz);
 
-  List<Clazz> list();
+  List<ClazzListDo> list();
 }

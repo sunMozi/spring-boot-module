@@ -67,8 +67,8 @@ public class Result<T> {
   public static Result<String> error(String msg) {
     Result<String> result = new Result<>();
     result.setCode(0);
-    result.setMag("error");
-    result.setData(msg);
+    result.setMag(msg);
+    result.setData(null);
     return result;
   }
 

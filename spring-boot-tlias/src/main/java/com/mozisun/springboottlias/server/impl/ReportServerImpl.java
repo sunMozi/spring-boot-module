@@ -1,14 +1,18 @@
 package com.mozisun.springboottlias.server.impl;
 
 
-import com.mozisun.springboottlias.enums.Role;
+import com.mozisun.springboottlias.header.enums.DegreeEnum;
+import com.mozisun.springboottlias.header.enums.Role;
 import com.mozisun.springboottlias.mapper.ReportMapper;
 import com.mozisun.springboottlias.model.result.Result;
-import com.mozisun.springboottlias.model.vo.EmpGenderDataVo;
+import com.mozisun.springboottlias.model.vo.ClazzAndDateVo;
 import com.mozisun.springboottlias.model.vo.EmpJobDataVo;
+import com.mozisun.springboottlias.model.vo.KeyAndValueVO;
+import com.mozisun.springboottlias.model.vo.StudentDegreeCountVO;
 import com.mozisun.springboottlias.server.ReportServer;
 import jakarta.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,11 +32,12 @@ public class ReportServerImpl implements ReportServer {
 
   @Override
   public Result<?> empGenderData() {
-    List<EmpGenderDataVo> result = new ArrayList<>();
-    result.add(new EmpGenderDataVo("男性员工", reportMapper.selectEmpGenderData(1)));
-    result.add(new EmpGenderDataVo("女性员工", reportMapper.selectEmpGenderData(2)));
+    List<KeyAndValueVO> result = new ArrayList<>();
+    result.add(new KeyAndValueVO("男性员工", reportMapper.selectEmpGenderData(1)));
+    result.add(new KeyAndValueVO("女性员工", reportMapper.selectEmpGenderData(2)));
     return Result.success(result);
   }
+
 
   @Override
   public Result<?> empJobData() {
@@ -51,6 +56,41 @@ public class ReportServerImpl implements ReportServer {
     map.put("jobList", jobList);
     map.put("dataList", dataList);
 
+    return Result.success(map);
+  }
+
+  @Override
+  public Result<?> studentDegreeData() {
+    Map<Integer, Integer> degreeCountMap = reportMapper.selectAllStudentDegreeData()
+                                                       .stream()
+                                                       .collect(Collectors.toMap(
+                                                           StudentDegreeCountVO::getDegree,
+                                                           StudentDegreeCountVO::getCount));
+
+    List<KeyAndValueVO> result = Arrays.stream(DegreeEnum.values())
+                                       .map(degree -> new KeyAndValueVO(degree.getName(),
+                                                                        degreeCountMap.getOrDefault(
+                                                                            degree.getCode(),
+                                                                            0)))
+                                       .toList();
+
+    return Result.success(result);
+  }
+
+  @Override
+  public Result<?> studentCountData() {
+    List<ClazzAndDateVo> result = reportMapper.selectStudentCountData();
+    Map<String, List<?>> map = new HashMap<>();
+    map.put("clazzList", result.stream().map(
+
+        clazzAndDateVo -> {
+          if (clazzAndDateVo.getClazzName() == null) {
+            return "未分配班级";
+          } else {
+            return clazzAndDateVo.getClazzName();
+          }
+        }).toList());
+    map.put("dataList", result.stream().map(ClazzAndDateVo::getStudentCount).toList());
     return Result.success(map);
   }
 }

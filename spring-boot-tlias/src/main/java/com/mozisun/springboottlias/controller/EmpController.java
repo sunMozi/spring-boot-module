@@ -10,11 +10,14 @@ import com.mozisun.springboottlias.model.result.Result;
 import com.mozisun.springboottlias.model.vo.EmpExprVO;
 import com.mozisun.springboottlias.server.EmpService;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +35,20 @@ public class EmpController {
   @Resource
   private EmpService empService;
 
+  @DeleteMapping
+  public Result<?> delById(Integer[] ids) {
+    empService.delById(ids);
+    return Result.success();
+  }
+
+
+  @PutMapping
+  public Result<?> putEmp(@RequestBody @Valid AddEmpDto addEmpDto) {
+    empService.putEmp(addEmpDto);
+    return Result.success();
+  }
+
+
   @GetMapping("/{id}")
   public Result<EmpExprVO> getById(@PathVariable Integer id) {
     EmpExprVO result = empService.getEmpExprById(id);
@@ -40,7 +57,7 @@ public class EmpController {
 
 
   @PostMapping
-  public Result<?> add(@RequestBody AddEmpDto addEmpDto) {
+  public Result<?> add(@RequestBody @Valid AddEmpDto addEmpDto) {
     empService.addEmp(addEmpDto);
     return Result.success();
   }

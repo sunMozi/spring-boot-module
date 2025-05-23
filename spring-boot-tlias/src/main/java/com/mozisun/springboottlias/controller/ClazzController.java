@@ -32,7 +32,7 @@ public class ClazzController {
 
 
   @GetMapping("list")
-  public Result<List<Clazz>> list() {
+  public Result<List<ClazzListDo>> list() {
     return Result.success(clazzService.list());
   }
 

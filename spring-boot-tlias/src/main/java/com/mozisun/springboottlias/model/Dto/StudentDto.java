@@ -1,25 +1,19 @@
-package com.mozisun.springboottlias.model.entiry;
+package com.mozisun.springboottlias.model.Dto;
 
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
  * @author moZiA
- * @date 2025/5/17 18:06
+ * @date 2025/5/19 10:44
  * @description
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Setter
 @Getter
-public class Student {
+public class StudentDto {
 
   private Integer id; //ID
   private String name; //姓名
@@ -38,4 +32,8 @@ public class Student {
   private LocalDateTime updateTime; //修改时间
 
   private String clazzName;//班级名称
+
+
+
+
 }

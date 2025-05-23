@@ -47,6 +47,7 @@ public class EmpServiceImpl implements EmpService {
     // 1. 校验必填字段（检查非空字段）
     boolean hasNull = BeanUtil.hasNullField(dto,
                                             "job",
+                                            "id",
                                             "salary",
                                             "gender",
                                             "image",
@@ -90,18 +91,61 @@ public class EmpServiceImpl implements EmpService {
     EmpExprVO empExprVO = new EmpExprVO();
     BeanUtil.copyProperties(emp, empExprVO);
 
-    List<ExprVo> exprVOStream = empExprMapper.selectEmpExprByEmpId(emp.getId())
-                                             .stream()
-                                             .map(empExpr -> {
-                                               ExprVo exprVO = new ExprVo();
-                                               BeanUtil.copyProperties(empExpr, empExprVO);
-                                               return exprVO;
-                                             })
-                                             .toList();
+    List<ExprVo> empExprs = empExprMapper.selectEmpExprByEmpId(id).stream().map(expr -> {
+      ExprVo exprVo = new ExprVo();
+      BeanUtil.copyProperties(expr, exprVo);
+      return exprVo;
+    }).toList();
 
-    empExprVO.setExprList(exprVOStream);
+    empExprVO.setExprList(empExprs);
 
     return empExprVO;
+  }
+
+  @Override
+  @Transactional
+  public void putEmp(AddEmpDto addEmpDto) {
+    boolean hasNull = BeanUtil.hasNullField(addEmpDto,
+                                            "job",
+                                            "salary",
+                                            "gender",
+                                            "image",
+                                            "entryDate",
+                                            "deptId",
+                                            "exprList");
+    if (hasNull) {
+      throw new IllegalArgumentException("必填字段缺失");
+    }
+
+    Emp emp = Emp.builder()
+                 .password("123456")
+                 .createTime(LocalDateTime.now())
+                 .updateTime(LocalDateTime.now())
+                 .build();
+
+    BeanUtil.copyProperties(addEmpDto, emp);
+    emp.setId(addEmpDto.getId());
+
+    empMapper.updateEmp(emp);
+    empExprMapper.deleteEmpExprByEmpId(emp.getId());
+
+    if (addEmpDto.getExprList() != null && !addEmpDto.getExprList().isEmpty()) {
+      List<EmpExpr> empExprs = addEmpDto.getExprList().stream().map(exprDto -> {
+        EmpExpr empExpr = new EmpExpr();
+        BeanUtil.copyProperties(exprDto, empExpr);
+        empExpr.setEmpId(emp.getId());
+        return empExpr;
+      }).toList();
+      empExprMapper.insertBatch(empExprs);
+    }
+
+
+  }
+
+  @Override
+  @Transactional
+  public void delById(Integer... ids) {
+    empMapper.deleteEmpByIds(ids);
   }
 
   @Override
@@ -112,6 +156,7 @@ public class EmpServiceImpl implements EmpService {
     Page<EmpListDo> empListDos = empMapper.selectEmpWithDept(empPageQuery);
 
     PageResult<EmpListDo> listPageResult = new PageResult<>();
+
     listPageResult.setRows(empListDos.getResult());
     listPageResult.setTotal(empListDos.getTotal());
 

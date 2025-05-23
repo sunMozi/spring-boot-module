@@ -4,9 +4,11 @@ package com.mozisun.springboottlias.server.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mozisun.springboottlias.mapper.ClazzMapper;
+import com.mozisun.springboottlias.mapper.StudentMapper;
 import com.mozisun.springboottlias.model.Dos.ClazzListDo;
 import com.mozisun.springboottlias.model.Dto.ClazzPageQuery;
 import com.mozisun.springboottlias.model.entiry.Clazz;
+import com.mozisun.springboottlias.model.entiry.Student;
 import com.mozisun.springboottlias.model.result.PageResult;
 import com.mozisun.springboottlias.server.ClazzService;
 import jakarta.annotation.Resource;
@@ -26,6 +28,9 @@ public class ClazzServiceImpl implements ClazzService {
 
   @Resource
   private ClazzMapper clazzMapper;
+
+  @Resource
+  private StudentMapper studentMapper;
 
 
   @Override
@@ -66,7 +71,11 @@ public class ClazzServiceImpl implements ClazzService {
     if (id == null || id <= 0) {
       throw new RuntimeException("数据错误");
     }
-    // TODO 根据 id 查询 学员  如果有学生 则 不能删除
+    List<Student> clazz = studentMapper.selectStudentByClazzId();
+
+    if (clazz != null) {
+      throw new RuntimeException("班级有学生,不可 删除");
+    }
 
     clazzMapper.deleteById(id);
   }
@@ -95,7 +104,8 @@ public class ClazzServiceImpl implements ClazzService {
   }
 
   @Override
-  public List<Clazz> list() {
-    return List.of();
+  public List<ClazzListDo> list() {
+    Page<ClazzListDo> clazzList = clazzMapper.selectClazzList(null);
+    return clazzList.getResult();
   }
 }

@@ -21,4 +21,8 @@ public interface EmpService {
   void addEmp(AddEmpDto addEmpDto);
 
   EmpExprVO getEmpExprById(Integer id);
+
+  void putEmp(AddEmpDto addEmpDto);
+
+  void delById(Integer... ids);
 }

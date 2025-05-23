@@ -14,6 +14,69 @@ import org.apache.ibatis.jdbc.SQL;
 public class EmpSqlProvider {
 
 
+  public String deleteEmpByIds(final Map<String, Object> params) {
+    final Integer[] ids = (Integer[]) params.get("ids");
+    return new SQL() {{
+      DELETE_FROM("emp");
+      if (ids != null && ids.length > 0) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < ids.length; i++) {
+          if (i > 0) sb.append(",");
+          sb.append("#{ids[").append(i).append("]}");
+        }
+        WHERE("id IN (" + sb.toString() + ")");
+      }
+    }}.toString();
+  }
+
+
+  public String updateEmp(final Map<String, Object> params) {
+    final Emp emp = (Emp) params.get("emp");
+    return new SQL() {{
+      UPDATE("emp");
+      buildSetClause(this, emp);
+      WHERE("id = #{emp.id}");
+    }}.toString();
+  }
+
+  private void buildSetClause(SQL sql, Emp emp) {
+    if (emp != null) {
+      if (emp.getUsername() != null) {
+        sql.SET("username = #{emp.username}");
+      }
+      if (emp.getPassword() != null) {
+        sql.SET("password = #{emp.password}");
+      }
+      if (emp.getName() != null) {
+        sql.SET("name = #{emp.name}");
+      }
+      if (emp.getGender() != null) {
+        sql.SET("gender = #{emp.gender}");
+      }
+      if (emp.getPhone() != null) {
+        sql.SET("phone = #{emp.phone}");
+      }
+      if (emp.getJob() != null) {
+        sql.SET("job = #{emp.job}");
+      }
+      if (emp.getSalary() != null) {
+        sql.SET("salary = #{emp.salary}");
+      }
+      if (emp.getImage() != null) {
+        sql.SET("image = #{emp.image}");
+      }
+      if (emp.getEntryDate() != null) {
+        sql.SET("entry_date = #{emp.entryDate}");
+      }
+      if (emp.getDeptId() != null) {
+        sql.SET("dept_id = #{emp.deptId}");
+      }
+      sql.SET("update_time = #{emp.createTime}");
+      sql.SET("create_time = #{emp.createTime}");
+    }
+  }
+
+
   public String insertEmp(final Map<String, Object> params) {
     final Emp emp = (Emp) params.get("emp");
     return new SQL() {{
@@ -74,7 +137,7 @@ public class EmpSqlProvider {
              "e.gender",
              "e.image",
              "d.name AS deptName",
-             "e.job",
+             "e.job as job",
              "e.entry_date",
              "e.update_time");
       FROM("emp e");

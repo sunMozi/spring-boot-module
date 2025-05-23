@@ -6,12 +6,15 @@ import com.mozisun.springboottlias.model.Dos.EmpListDo;
 import com.mozisun.springboottlias.model.Dto.EmpPageQuery;
 import com.mozisun.springboottlias.model.entiry.Emp;
 import java.util.List;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.UpdateProvider;
 
 /**
  * @author MoZi
@@ -33,4 +36,10 @@ public interface EmpMapper {
 
   @Select("select * from emp where id = #{id}")
   Emp selectEmpById(Integer id);
+
+  @UpdateProvider(type = EmpSqlProvider.class, method = "updateEmp")
+  void updateEmp(@Param("emp") Emp emp);
+
+  @DeleteProvider(type = EmpSqlProvider.class, method = "deleteEmpByIds")
+  void deleteEmpByIds(Integer[] ids);
 }

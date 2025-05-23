@@ -1,4 +1,4 @@
-package com.mozisun.springboottlias.enums;
+package com.mozisun.springboottlias.header.enums;
 
 public enum Role {
   TEACHING_DIRECTOR(1, "班主任"),

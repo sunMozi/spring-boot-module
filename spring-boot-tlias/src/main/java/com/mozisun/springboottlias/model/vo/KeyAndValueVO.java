@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmpGenderDataVo {
+public class KeyAndValueVO {
 
   private String name;
   private Integer value;

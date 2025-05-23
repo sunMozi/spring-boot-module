@@ -13,4 +13,8 @@ public interface ReportServer {
   Result<?> empGenderData();
 
   Result<?> empJobData();
+
+  Result<?> studentDegreeData();
+
+  Result<?> studentCountData();
 }
