@@ -1,6 +1,10 @@
 package com.mozisun.springboottlias.server;
 
 
+import com.mozisun.springboottlias.model.Dto.PageQuery;
+import com.mozisun.springboottlias.model.entiry.EmpLog;
+import com.mozisun.springboottlias.model.entiry.OperateLog;
+import com.mozisun.springboottlias.model.result.PageResult;
 import com.mozisun.springboottlias.model.result.Result;
 
 /**
@@ -17,4 +21,5 @@ public interface ReportServer {
   Result<?> studentDegreeData();
 
   Result<?> studentCountData();
+
 }

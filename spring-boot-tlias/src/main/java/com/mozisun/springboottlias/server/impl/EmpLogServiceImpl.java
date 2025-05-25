@@ -1,11 +1,13 @@
 package com.mozisun.springboottlias.server.impl;
 
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.mozisun.springboottlias.mapper.EmpLogMapper;
+import com.mozisun.springboottlias.mapper.OperateLogMapper;
 import com.mozisun.springboottlias.model.Dto.PageQuery;
 import com.mozisun.springboottlias.model.entiry.EmpLog;
+import com.mozisun.springboottlias.model.entiry.OperateLog;
 import com.mozisun.springboottlias.model.result.PageResult;
 import com.mozisun.springboottlias.server.EmpLogService;
 import jakarta.annotation.Resource;
@@ -26,6 +28,9 @@ public class EmpLogServiceImpl implements EmpLogService {
   @Resource
   private EmpLogMapper empLogMapper;
 
+  @Resource
+  private OperateLogMapper operateLogMapper;
+
 
   @Async
   @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -34,12 +39,12 @@ public class EmpLogServiceImpl implements EmpLogService {
     empLogMapper.insert(empLog);
   }
 
-  @Override
-  public PageResult<EmpLog> page(PageQuery query) {
 
+  @Override
+  public PageResult<OperateLog> OperateLogPage(PageQuery query) {
     PageHelper.startPage(query.getPage(), query.getPageSize());
-    List<EmpLog> empLogs = empLogMapper.selectEmpLogList();
-    PageInfo<EmpLog> pageInfo = new PageInfo<>(empLogs);
-    return new PageResult<>(pageInfo.getTotal(), pageInfo.getList());
+    List<OperateLog> operateLogs = operateLogMapper.selectEmpLogList();
+    Page<OperateLog> page = (Page<OperateLog>) operateLogs;
+    return new PageResult<>(page.getTotal(), page.getResult());
   }
 }

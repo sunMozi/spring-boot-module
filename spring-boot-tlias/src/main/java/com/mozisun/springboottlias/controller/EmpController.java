@@ -1,6 +1,7 @@
 package com.mozisun.springboottlias.controller;
 
 
+import com.mozisun.springboottlias.aop.anno.OperateLogAnno;
 import com.mozisun.springboottlias.model.Dos.EmpListDo;
 import com.mozisun.springboottlias.model.Dto.AddEmpDto;
 import com.mozisun.springboottlias.model.Dto.EmpPageQuery;
@@ -35,13 +36,14 @@ public class EmpController {
   @Resource
   private EmpService empService;
 
+  @OperateLogAnno
   @DeleteMapping
   public Result<?> delById(Integer[] ids) {
     empService.delById(ids);
     return Result.success();
   }
 
-
+  @OperateLogAnno
   @PutMapping
   public Result<?> putEmp(@RequestBody @Valid AddEmpDto addEmpDto) {
     empService.putEmp(addEmpDto);
@@ -55,7 +57,7 @@ public class EmpController {
     return Result.success(result);
   }
 
-
+  @OperateLogAnno
   @PostMapping
   public Result<?> add(@RequestBody @Valid AddEmpDto addEmpDto) {
     empService.addEmp(addEmpDto);

@@ -1,6 +1,7 @@
 package com.mozisun.springboottlias.controller;
 
 
+import com.mozisun.springboottlias.aop.anno.OperateLogAnno;
 import com.mozisun.springboottlias.model.result.Result;
 import com.mozisun.springboottlias.utils.AliOSSUtils;
 import jakarta.annotation.Resource;
@@ -16,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @description
  */
 @Controller
-public class commonController {
+public class CommonController {
 
   @Resource
   private AliOSSUtils aliOSSUtils;
@@ -24,6 +25,7 @@ public class commonController {
 
   @PostMapping("/upload")
   @ResponseBody
+  @OperateLogAnno
   public Result<String> uploadImage(@RequestParam("file") MultipartFile file) throws Exception {
     String url = aliOSSUtils.upload(file);
     return Result.success(url);

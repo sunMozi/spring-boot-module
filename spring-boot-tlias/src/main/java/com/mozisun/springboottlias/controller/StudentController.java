@@ -1,6 +1,7 @@
 package com.mozisun.springboottlias.controller;
 
 
+import com.mozisun.springboottlias.aop.anno.OperateLogAnno;
 import com.mozisun.springboottlias.model.Dto.StudentDto;
 import com.mozisun.springboottlias.model.Dto.StudentQuery;
 import com.mozisun.springboottlias.model.entiry.Student;
@@ -25,32 +26,33 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("students")
+@OperateLogAnno
 public class StudentController {
 
   @Resource
   private StudentServer studentServer;
-
+  @OperateLogAnno
   @DeleteMapping("{ids}")
   public Result<?> delById(@PathVariable Integer[] ids) {
     studentServer.delById(ids);
     return Result.success();
   }
 
-
+  @OperateLogAnno
   @PostMapping
   public Result<?> addStudent(@RequestBody StudentDto student) {
     studentServer.addStudent(student);
     return Result.success();
   }
 
-
+  @OperateLogAnno
   @PutMapping("/violation/{id}/{score}")
   public Result<?> putViolation(@PathVariable Integer id, @PathVariable Short score) {
     studentServer.putViolation(id, score);
     return Result.success();
   }
 
-
+  @OperateLogAnno
   @PutMapping
   public Result<?> putStudent(@RequestBody StudentDto student) {
     studentServer.putStudent(student);

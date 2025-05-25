@@ -1,6 +1,7 @@
 package com.mozisun.springboottlias.controller;
 
 
+import com.mozisun.springboottlias.aop.anno.OperateLogAnno;
 import com.mozisun.springboottlias.model.Dos.ClazzListDo;
 import com.mozisun.springboottlias.model.Dto.ClazzPageQuery;
 import com.mozisun.springboottlias.model.entiry.Clazz;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("clazzs")
+@OperateLogAnno
 public class ClazzController {
 
   @Resource
@@ -38,6 +40,7 @@ public class ClazzController {
 
 
   @PutMapping
+  @OperateLogAnno
   public Result<?> putClazz(@RequestBody Clazz clazz) {
     clazzService.putClazz(clazz);
     return Result.success();
@@ -50,12 +53,14 @@ public class ClazzController {
 
 
   @DeleteMapping("{id}")
+  @OperateLogAnno
   public Result<?> delById(@PathVariable Integer id) {
     clazzService.delById(id);
     return Result.success();
   }
 
   @PostMapping
+  @OperateLogAnno
   public Result<?> addClazz(@RequestBody Clazz clazz) {
     clazzService.addClazz(clazz);
     return Result.success();

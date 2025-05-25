@@ -1,6 +1,7 @@
 package com.mozisun.springboottlias.controller;
 
 
+import com.mozisun.springboottlias.aop.anno.OperateLogAnno;
 import com.mozisun.springboottlias.model.entiry.Dept;
 import com.mozisun.springboottlias.model.result.Result;
 import com.mozisun.springboottlias.server.DeptServer;
@@ -29,6 +30,7 @@ public class DeptController {
   private DeptServer deptServer;
 
   @PutMapping
+  @OperateLogAnno
   public Result<?> putDept(@RequestBody Dept dept) {
     deptServer.putDept(dept);
     return Result.success();
@@ -42,12 +44,14 @@ public class DeptController {
 
 
   @PostMapping
+  @OperateLogAnno
   public Result<?> addDept(@RequestBody Dept dept) {
     deptServer.addDept(dept);
     return Result.success();
   }
 
   @DeleteMapping
+  @OperateLogAnno
   public Result<?> delById(@RequestParam("id") Integer id) {
     deptServer.delById(id);
     return Result.success();

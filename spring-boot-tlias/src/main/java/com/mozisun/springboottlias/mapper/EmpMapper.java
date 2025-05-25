@@ -6,7 +6,6 @@ import com.mozisun.springboottlias.model.Dos.EmpListDo;
 import com.mozisun.springboottlias.model.Dto.EmpPageQuery;
 import com.mozisun.springboottlias.model.entiry.Emp;
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
@@ -42,4 +41,7 @@ public interface EmpMapper {
 
   @DeleteProvider(type = EmpSqlProvider.class, method = "deleteEmpByIds")
   void deleteEmpByIds(Integer[] ids);
+
+  @Select("select * from emp where username = #{username} and password = #{password}")
+  Emp selectEmpByUserNameAndPassWord(String username, String password);
 }

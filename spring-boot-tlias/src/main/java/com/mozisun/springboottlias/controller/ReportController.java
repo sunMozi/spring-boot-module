@@ -1,6 +1,11 @@
 package com.mozisun.springboottlias.controller;
 
 
+import com.mozisun.springboottlias.aop.anno.OperateLogAnno;
+import com.mozisun.springboottlias.model.Dto.PageQuery;
+import com.mozisun.springboottlias.model.entiry.EmpLog;
+import com.mozisun.springboottlias.model.entiry.OperateLog;
+import com.mozisun.springboottlias.model.result.PageResult;
 import com.mozisun.springboottlias.model.result.Result;
 import com.mozisun.springboottlias.server.ReportServer;
 import jakarta.annotation.Resource;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("report")
+@OperateLogAnno
 public class ReportController {
 
   @Resource
@@ -42,6 +48,9 @@ public class ReportController {
   public Result<?> studentCountData() {
     return reportServer.studentCountData();
   }
+
+
+
 
 
 }

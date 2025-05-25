@@ -10,7 +10,7 @@
         <module name="web-demo" />
         <module name="spring-boot-hello" />
       </profile>
-      <profile name="Annotation profile for spring-boot-tlias" enabled="true">
+      <profile name="Annotation profile for spring-boot-constant" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -19,6 +19,7 @@
         </processorPath>
         <module name="spring-boot-tlias" />
         <module name="spring-boot-mybatis" />
+        <module name="spring-boot-constant" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,6 +30,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Picture-Bed" options="-parameters" />
+      <module name="spring-boot-constant" options="-parameters" />
       <module name="spring-boot-hello" options="-parameters" />
       <module name="spring-boot-mybatis" options="-parameters" />
       <module name="spring-boot-mybats" options="-parameters" />
