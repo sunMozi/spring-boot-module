@@ -4,6 +4,8 @@ package com.mozisun.springboottlias.server.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.mozisun.springboottlias.header.enums.CommonExceptionEnum;
+import com.mozisun.springboottlias.header.exception.ExceptionCase;
 import com.mozisun.springboottlias.mapper.EmpExprMapper;
 import com.mozisun.springboottlias.mapper.EmpMapper;
 import com.mozisun.springboottlias.model.Dos.EmpListDo;
@@ -44,19 +46,8 @@ public class EmpServiceImpl implements EmpService {
   @Override
   @Transactional
   public void addEmp(AddEmpDto dto) {
-    // 1. 校验必填字段（检查非空字段）
-    boolean hasNull = BeanUtil.hasNullField(dto,
-                                            "job",
-                                            "id",
-                                            "salary",
-                                            "gender",
-                                            "image",
-                                            "entryDate",
-                                            "deptId",
-                                            "exprList");
-    if (hasNull) {
-      throw new IllegalArgumentException("必填字段缺失");
-    }
+
+    checkUsernameAndPhone(dto.getUsername(), dto.getPhone());
 
     Emp emp = Emp.builder()
                  .password("123456")
@@ -84,6 +75,7 @@ public class EmpServiceImpl implements EmpService {
       empLogService.insertLog(empLog);
     }
   }
+
 
   @Override
   public EmpExprVO getEmpExprById(Integer id) {
@@ -168,4 +160,21 @@ public class EmpServiceImpl implements EmpService {
 
     return empMapper.selectEmpList();
   }
+
+  // 检查username phone 是否重复
+  private void checkUsernameAndPhone(String username, String phone) {
+
+    Emp byUsername = empMapper.selectByUsername(username);
+    if (byUsername != null) {
+      ExceptionCase.cast(CommonExceptionEnum.EMP_USERNAME_ALREADY_EXISTS);
+    }
+
+    Emp byPhone = empMapper.selectByPhone(phone);
+    if (byPhone != null) {
+      ExceptionCase.cast(CommonExceptionEnum.EMP_PHONE_ALREADY_EXISTS);
+    }
+
+  }
+
+
 }

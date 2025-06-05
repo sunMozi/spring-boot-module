@@ -13,5 +13,5 @@ public class ExceptionCase {
   public static void cast(Code code) {
     throw new BizException(code);
   }
-
+  
 }

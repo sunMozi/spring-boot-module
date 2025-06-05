@@ -1,6 +1,7 @@
 package com.mozisun.springboottlias.model.entiry;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,8 @@ public class Clazz {
   private LocalDate endDate; //结课时间
   private Integer masterId; //班主任
   private Integer subject; //学科
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime createTime; //创建时间
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime updateTime; //修改时间
 }

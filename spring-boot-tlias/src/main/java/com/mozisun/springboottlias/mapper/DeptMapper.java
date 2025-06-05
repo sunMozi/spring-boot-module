@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
 
@@ -32,4 +33,7 @@ public interface DeptMapper {
 
   @SelectProvider(type = DeptSqlProvider.class, method = "selectDeptList")
   List<Dept> selectDeptList();
+
+  @Select("select * from dept where name = #{name}")
+  Dept selectDeptByName(String name);
 }

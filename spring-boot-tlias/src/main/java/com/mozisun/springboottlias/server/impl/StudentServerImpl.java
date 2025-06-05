@@ -4,6 +4,8 @@ package com.mozisun.springboottlias.server.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mozisun.springboottlias.header.enums.CommonExceptionEnum;
+import com.mozisun.springboottlias.header.exception.ExceptionCase;
 import com.mozisun.springboottlias.mapper.StudentMapper;
 import com.mozisun.springboottlias.model.Dto.StudentDto;
 import com.mozisun.springboottlias.model.Dto.StudentQuery;
@@ -70,6 +72,8 @@ public class StudentServerImpl implements StudentServer {
 
   @Override
   public void addStudent(StudentDto addStu) {
+    checkAddStudent(addStu);
+
     Student stu = new Student();
     BeanUtil.copyProperties(addStu, stu);
     stu.setCreateTime(LocalDateTime.now());
@@ -80,5 +84,29 @@ public class StudentServerImpl implements StudentServer {
   @Override
   public void delById(Integer[] ids) {
     studentMapper.deleteStudentByIdBatch(ids);
+  }
+
+
+  public void checkAddStudent(StudentDto student) {
+    if (student == null || student.getNo() == null || student.getNo().isBlank() ||
+        student.getPhone() == null || student.getPhone().isBlank() || student.getIdCard() == null ||
+        student.getIdCard().isBlank()) {
+      ExceptionCase.cast(CommonExceptionEnum.STUDENT_PARAM_INVALID);
+    }
+    Student byNo = studentMapper.selectStudentByNo(student.getNo());
+    if (byNo != null) {
+      ExceptionCase.cast(CommonExceptionEnum.STUDENT_NO_EXISTS);
+    }
+    Student byPhone = studentMapper.selectStudentByPhone(student.getPhone());
+    if (byPhone != null) {
+      ExceptionCase.cast(CommonExceptionEnum.STUDENT_PHONE_EXISTS);
+    }
+
+    Student byIdCard = studentMapper.selectStudentByIdCard(student.getIdCard());
+    if (byIdCard != null) {
+      ExceptionCase.cast(CommonExceptionEnum.STUDENT_ID_CARD_EXISTS);
+    }
+
+
   }
 }

@@ -108,6 +108,7 @@ public class ClazzSqlProvider {
              "c.begin_date as beginDate",
              "c.end_date as endDate",
              "c.master_id as masterId",
+             "c.subject as subject",
              "c.create_time as createTime",
              "c.update_time as updateTime",
              "e.name as masterName");

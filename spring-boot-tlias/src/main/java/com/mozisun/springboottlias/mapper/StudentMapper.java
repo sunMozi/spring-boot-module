@@ -32,12 +32,21 @@ public interface StudentMapper {
   void updateStudent(@Param("student") Student student);
 
 
-  @Select("select * from student where clazz_id = #{clazzId}")
-  List<Student> selectStudentByClazzId();
+  @Select("select * from student where clazz_id = #{id}")
+  List<Student> selectStudentByClazzId(Integer id);
 
   @InsertProvider(type = StudentSqlProvider.class, method = "insertStudent")
   void insertStudent(@Param("student") Student student);
 
   @DeleteProvider(type = StudentSqlProvider.class, method = "deleteStudentByIdBatch")
   void deleteStudentByIdBatch(@Param("ids") Integer[] ids);
+
+  @Select("select * from student where no = #{no}")
+  Student selectStudentByNo(String no);
+
+  @Select("select * from student where phone = #{phone}")
+  Student selectStudentByPhone(String phone);
+
+  @Select("select * from student where id_card = #{idCard}")
+  Student selectStudentByIdCard(String idCard);
 }

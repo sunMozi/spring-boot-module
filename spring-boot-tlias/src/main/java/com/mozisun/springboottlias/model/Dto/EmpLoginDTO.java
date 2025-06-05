@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class EmpLoginDTO {
 
-  private String password;
   private String username;
+  private String password;
 
 }
