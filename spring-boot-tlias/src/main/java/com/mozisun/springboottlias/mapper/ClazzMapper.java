@@ -32,11 +32,11 @@ public interface ClazzMapper {
   Page<ClazzListDo> selectClazzList(@Param("clazzPageQuery") ClazzPageQuery clazzPageQuery);
 
   @DeleteProvider(type = ClazzSqlProvider.class, method = "deleteById")
-  void deleteById(Integer id);
+  Integer deleteById(Integer id);
 
   @SelectProvider(type = ClazzSqlProvider.class, method = "selectClazzById")
   Clazz selectClazzById(Integer id);
 
   @UpdateProvider(type = ClazzSqlProvider.class, method = "updateClazz")
-  void updateClazz(Clazz clazz);
+  Integer updateClazz(Clazz clazz);
 }

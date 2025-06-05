@@ -1,7 +1,6 @@
 spring:
   application:
     name: spring-boot-tlias
-    image_dir: E:/webserver/web_app/tlias/image/
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/tlias
@@ -34,17 +33,6 @@ aliyun:
     accessKeySecret: ${ALIBABA_ACCESS_KEY_SECRET}
     bucketName: chengzi03
 
-# springdoc-openapi项目配置
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    tags-sorter: alpha
-    operations-sorter: alpha
-  api-docs:
-    path: /v3/api-docs
-
-knife4j:
-  enable: true
 
 
 alias:
@@ -55,4 +43,19 @@ alias:
     admin-ttl: 7200000000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  packagesToScan:
+    - com.mozisun.springboottlias.controller
+
+
+knife4j:
+  enable: true
 

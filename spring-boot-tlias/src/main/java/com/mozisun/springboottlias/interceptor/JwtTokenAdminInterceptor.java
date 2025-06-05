@@ -2,6 +2,8 @@ package com.mozisun.springboottlias.interceptor;
 
 
 import com.mozisun.springboottlias.context.BaseContext;
+import com.mozisun.springboottlias.header.enums.CommonExceptionEnum;
+import com.mozisun.springboottlias.header.exception.ExceptionCase;
 import com.mozisun.springboottlias.properties.JwtProperties;
 import com.mozisun.springboottlias.utils.JwtUtils;
 import jakarta.annotation.Resource;
@@ -32,8 +34,8 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
       return true;
     }
     String token = request.getHeader(jwtProperties.getAdminTokenName());
-    if (token == null){
-      return true;
+    if (token == null) {
+      ExceptionCase.cast(CommonExceptionEnum.UNAUTHORIZED);
     }
     Map<String, Object> parseJWT = JwtUtils.parseJWT(jwtProperties.getAdminSecretKey(), token);
     Long l = Long.valueOf(parseJWT.get("emp_id").toString());

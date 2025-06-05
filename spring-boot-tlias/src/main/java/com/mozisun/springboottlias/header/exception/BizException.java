@@ -11,4 +11,5 @@ public class BizException extends BaseException {
   public BizException(Code code) {
     super(code.getMessage());
   }
+
 }

@@ -1,5 +1,7 @@
 package com.mozisun.springboottlias.utils;
 
+import com.mozisun.springboottlias.header.enums.CommonExceptionEnum;
+import com.mozisun.springboottlias.header.exception.ExceptionCase;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -56,7 +58,8 @@ public class JwtUtils {
       // 3. 返回不可修改的 Map（自动类型转换）
       return claims;
     } catch (Exception e) {
-      throw new JwtException("JWT 解析失败: " + e.getMessage(), e);
+      ExceptionCase.cast(CommonExceptionEnum.UNAUTHORIZED);
+      return null;
     }
   }
 

@@ -20,7 +20,7 @@ import lombok.ToString;
 public class Result<T> {
 
   private Integer code;
-  private String mag;
+  private String message;
   private T data;
 
 
@@ -38,7 +38,7 @@ public class Result<T> {
   public static <T> Result<T> success(T data) {
     Result<T> result = new Result<>();
     result.setCode(1);
-    result.setMag("success");
+    result.setMessage("success");
     result.setData(data);
     return result;
   }
@@ -52,7 +52,7 @@ public class Result<T> {
   public static <T> Result<T> success() {
     Result<T> result = new Result<>();
     result.setCode(1);
-    result.setMag("success");
+    result.setMessage("success");
     return result;
   }
 
@@ -67,7 +67,15 @@ public class Result<T> {
   public static Result<String> error(String msg) {
     Result<String> result = new Result<>();
     result.setCode(0);
-    result.setMag(msg);
+    result.setMessage(msg);
+    result.setData(null);
+    return result;
+  }
+
+  public static Result<String> error(Integer code, String msg) {
+    Result<String> result = new Result<>();
+    result.setCode(code);
+    result.setMessage(msg);
     result.setData(null);
     return result;
   }

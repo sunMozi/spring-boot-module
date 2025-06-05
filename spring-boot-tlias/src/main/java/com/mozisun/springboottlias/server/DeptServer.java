@@ -1,7 +1,9 @@
 package com.mozisun.springboottlias.server;
 
 
+import com.mozisun.springboottlias.model.Dto.PageQuery;
 import com.mozisun.springboottlias.model.entiry.Dept;
+import com.mozisun.springboottlias.model.result.PageResult;
 import java.util.List;
 
 /**
@@ -15,9 +17,11 @@ public interface DeptServer {
 
   void delById(Integer id);
 
-  List<Dept> deptAll();
+  PageResult<Dept> deptAll(PageQuery query);
 
   Dept getDeptById(Integer id);
 
   void putDept(Dept dept);
+
+  List<Dept> deptList();
 }
