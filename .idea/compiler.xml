@@ -10,15 +10,6 @@
         <module name="web-demo" />
         <module name="spring-boot-hello" />
       </profile>
-      <profile name="Annotation profile for spring-boot-constant" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="C:/Program Files/apache/maven-3.9.9/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
-        </processorPath>
-        <module name="spring-boot-constant" />
-      </profile>
       <profile name="Annotation profile for spring-boot-tlias" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -30,11 +21,20 @@
         <module name="spring-boot-tlias" />
         <module name="spring-boot-mybatis" />
       </profile>
+      <profile name="Annotation profile for spring-boot-payment" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="C:/Program Files/apache/maven-3.9.9/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="spring-boot-payment" />
+        <module name="spring-boot-constant" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Picture-Bed" target="17" />
       <module name="spring-boot-mybats" target="17" />
-      <module name="spring-boot-payment" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -44,6 +44,7 @@
       <module name="spring-boot-hello" options="-parameters" />
       <module name="spring-boot-mybatis" options="-parameters" />
       <module name="spring-boot-mybats" options="-parameters" />
+      <module name="spring-boot-payment" options="-parameters" />
       <module name="spring-boot-tlias" options="-parameters" />
       <module name="web-demo" options="-parameters" />
     </option>
