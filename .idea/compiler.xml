@@ -17,14 +17,24 @@
         <processorPath useClasspath="false">
           <entry name="C:/Program Files/apache/maven-3.9.9/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
+        <module name="spring-boot-constant" />
+      </profile>
+      <profile name="Annotation profile for spring-boot-tlias" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="C:/Program Files/apache/maven-3.9.9/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+          <entry name="C:/Program Files/apache/maven-3.9.9/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
         <module name="spring-boot-tlias" />
         <module name="spring-boot-mybatis" />
-        <module name="spring-boot-constant" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Picture-Bed" target="17" />
       <module name="spring-boot-mybats" target="17" />
+      <module name="spring-boot-payment" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
