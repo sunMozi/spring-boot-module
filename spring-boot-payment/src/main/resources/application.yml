@@ -29,5 +29,18 @@ spring:
       max-file-size: 10MB
       max-request-size: 20MB
 
+pay:
+  alipay:
+    app-id: your-alipay-app-id
+    private-key: your-private-key
+    public-key: your-alipay-public-key
+    gateway-url: https://openapi.alipay.com/gateway.do
+    notify-url: https://yourdomain.com/api/pay/alipay/notify
+  wechat:
+    mch-id: your-mch-id
+    mch-key: your-mch-key
+    app-id: your-app-id
+    notify-url: https://yourdomain.com/api/pay/wechat/notify
+
 
 
