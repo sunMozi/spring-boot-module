@@ -7,3 +7,6 @@
 [submodule "spring-boot-mybatis"]
 	path = spring-boot-mybatis
 	url = https://github.com/sunMozi/spring-boot-mybatis.git
+[submodule "spring-boot-payment"]
+	path = spring-boot-payment
+	url = https://github.com/sunMozi/spring-boot-payment.git
