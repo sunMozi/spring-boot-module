@@ -1,3 +1,6 @@
 [submodule "spring-boot-constant"]
 	path = spring-boot-constant
 	url = https://github.com/sunMozi/spring-boot-constant.git
+[submodule "spring-boot-demo"]
+	path = spring-boot-demo
+	url = https://github.com/sunMozi/spring-boot-demo.git
