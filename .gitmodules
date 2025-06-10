@@ -10,3 +10,6 @@
 [submodule "spring-boot-payment"]
 	path = spring-boot-payment
 	url = https://github.com/sunMozi/spring-boot-payment.git
+[submodule "spring-boot-tlias"]
+	path = spring-boot-tlias
+	url = https://github.com/sunMozi/spring-boot-tlias.git
