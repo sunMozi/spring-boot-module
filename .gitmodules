@@ -13,3 +13,6 @@
 [submodule "spring-boot-tlias"]
 	path = spring-boot-tlias
 	url = https://github.com/sunMozi/spring-boot-tlias.git
+[submodule "spring-boot-mybatis-plus"]
+	path = spring-boot-mybatis-plus
+	url = https://github.com/sunMozi/spring-boot-mybatis-plus.git
