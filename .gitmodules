@@ -4,3 +4,6 @@
 [submodule "spring-boot-demo"]
 	path = spring-boot-demo
 	url = https://github.com/sunMozi/spring-boot-demo.git
+[submodule "spring-boot-mybatis"]
+	path = spring-boot-mybatis
+	url = https://github.com/sunMozi/spring-boot-mybatis.git
