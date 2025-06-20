@@ -16,3 +16,6 @@
 [submodule "spring-boot-mybatis-plus"]
 	path = spring-boot-mybatis-plus
 	url = https://github.com/sunMozi/spring-boot-mybatis-plus.git
+[submodule "spring-boot-dubbo"]
+	path = spring-boot-dubbo
+	url = https://github.com/sunMozi/spring-boot-dubbo.git
