@@ -12,6 +12,7 @@
 | [`spring-boot-mybatis-plus`](https://github.com/sunMozi/spring-boot-mybatis-plus) | <sub>基于 MyBatis-Plus 的增强数据访问模块，支持 Lambda 条件构造器、自动填充、审计字段、乐观锁等特性。</sub> | 🛠 开发中 |
 | [`spring-boot-payment`](https://github.com/sunMozi/spring-boot-payment)           | <sub>支付模块，封装支付宝 / 微信支付能力，支持统一下单、签名验签、异步回调、退款等企业支付接口流程。</sub>           | ⏳ 规划中  |
 | [`spring-boot-tlias`](https://github.com/sunMozi/spring-boot-tlias)               | <sub>教学管理系统模块（TLias）</sub>                                             | ✅ 已完成  |
+| [`spring-boot-rabbitmq`](https://github.com/sunMozi/spring-boot-rabbitmq)           | <sub>rabbitmq-入门程序</sub>                                             | ✅ 已完成  |
 
 > 📌 所有子模块均为独立 Git 仓库，便于模块解耦与版本管理。
 
